@@ -135,11 +135,19 @@
     </div>
     <p class="lead">Mejorar la presencia digital de SEMFU, facilitar el acceso a la información de servicios y sedes, y proyectar una <strong>imagen profesional y de confianza</strong>.</p>
 
-    <div class="preview" style="margin-top:18px">
-      <image-slot id="web-landing" style="height:230px" shape="rounded" radius="8"
-        placeholder="Arrastra aquí una captura del Landing (hero + carrusel)"></image-slot>
-      <p class="cap"><b>Landing page (/)</b><span>captura — arrástrala o haz clic</span></p>
+    <div class="drive-frame" style="margin-top:18px">
+      <!-- Reemplaza DRIVE_IMG_ID con el ID del archivo en Google Drive               -->
+      <!-- Ejemplo: drive.google.com/file/d/1ABCxyz.../view → ID = 1ABCxyz...        -->
+      <img src="https://drive.google.com/thumbnail?id=DRIVE_IMG_ID&sz=w1200"
+           data-placeholder="DRIVE_IMG_ID"
+           alt="Captura Landing page SEMFU">
+      <div class="drive-ph">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+        <span class="ph-label">Imagen · Google Drive</span>
+        <code>Reemplaza DRIVE_IMG_ID</code>
+      </div>
     </div>
+    <p class="drive-cap"><b>Landing page (/)</b><span>Captura del sitio web institucional</span></p>
 
     <div class="cols-2" style="margin-top:22px">
       <div>
@@ -221,24 +229,29 @@
     </div>
     <p class="flow-tech">Python 3.11 · Selenium · Google Sheets API · Apps Script · Chart.js · GitHub Actions · cron-job.org · Gmail SMTP</p>
 
-    <div class="preview" style="margin-top:18px">
-      <image-slot id="rpa-dashboard" style="height:200px" shape="rounded" radius="8"
-        placeholder="Arrastra aquí un fotograma del dashboard (KPIs + gráficas)"></image-slot>
-      <p class="cap"><b>Dashboard analítico</b><span>captura del video — arrástrala aquí</span></p>
-    </div>
-
-    <div class="cols-2" style="margin-top:20px">
-      <div>
-        <div class="callout warn">
-          <div class="ico">▶</div>
-          <div class="body"><b>Se presenta en video adjunto.</b> El dashboard no se comparte por enlace público porque contiene <b>información sensible de pacientes</b>; el video recorre el flujo y los datos sin exponer un acceso.</div>
-        </div>
+    <div class="drive-frame" style="margin-top:18px">
+      <!-- Reemplaza DRIVE_VIDEO_ID con el ID del video en Google Drive               -->
+      <!-- Ejemplo: drive.google.com/file/d/1ABCxyz.../view → ID = 1ABCxyz...        -->
+      <iframe src="https://drive.google.com/file/d/DRIVE_VIDEO_ID/preview"
+              data-placeholder="DRIVE_VIDEO_ID"
+              allow="autoplay"
+              allowfullscreen></iframe>
+      <div class="drive-ph">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+        <span class="ph-label">Video · Google Drive</span>
+        <code>Reemplaza DRIVE_VIDEO_ID</code>
       </div>
-      <div>
-        <p class="subhead">Automatización y seguridad</p>
+    </div>
+    <p class="drive-cap"><b>Demostración del bot RPA</b><span>Flujo completo: login, extracción, dashboard y correo</span></p>
+
+    <div style="margin-top:20px">
+      <p class="subhead">Automatización y seguridad</p>
+      <div class="cols-2">
         <ul class="feat">
           <li><b>Lun–Sáb 11:30 p.m.</b> (hora Colombia), desatendido en la nube.</li>
           <li><b>GitHub Actions Secrets</b> · credenciales nunca en el repositorio.</li>
+        </ul>
+        <ul class="feat">
           <li><b>OAuth 2.0</b> con cuenta de servicio y runner efímero.</li>
           <li><b>try/except global</b> con correo de alerta ante fallos.</li>
         </ul>
@@ -266,6 +279,14 @@
   </div>
 </article>
 
-<script src="image-slot.js"></script>
+<script>
+  // Muestra el placeholder visual cuando el ID de Drive aún no ha sido reemplazado
+  document.querySelectorAll('[data-placeholder]').forEach(function(el) {
+    var id = el.getAttribute('data-placeholder');
+    if ((el.getAttribute('src') || '').indexOf(id) !== -1) {
+      el.closest('.drive-frame').classList.add('is-placeholder');
+    }
+  });
+</script>
 </body>
 </html>

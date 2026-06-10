@@ -369,25 +369,66 @@ ul.feat li::before {
 ul.feat li b { font-weight: 650; color: var(--tinta); }
 
 /* ============================================================
-   PREVIEW (image-slot frames)
+   DRIVE EMBEDS (imagen + video)
    ============================================================ */
-.preview { margin: 2px 0 0; }
-.preview image-slot {
+.drive-frame {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  background: repeating-linear-gradient(45deg, #fff, #fff 9px, #F4F0E9 9px, #F4F0E9 18px);
+  margin: 2px 0 0;
+}
+.drive-frame img {
   display: block;
   width: 100%;
-  border: 1px solid var(--rule);
+  height: 230px;
+  object-fit: cover;
   border-radius: 8px;
-  background:
-    repeating-linear-gradient(45deg, #fff, #fff 9px, #F4F0E9 9px, #F4F0E9 18px);
+  border: none;
 }
-.preview .cap {
+.drive-frame iframe {
+  display: block;
+  width: 100%;
+  height: 280px;
+  border: none;
+  border-radius: 8px;
+}
+/* Placeholder visible cuando el ID aún no ha sido reemplazado */
+.drive-ph {
+  position: absolute;
+  inset: 0;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--gris-soft);
+  font-size: 13px;
+  pointer-events: none;
+}
+.drive-ph svg { opacity: .4; }
+.drive-ph .ph-label { font-weight: 600; color: var(--gris); }
+.drive-ph code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px;
+  background: rgba(0,0,0,0.06);
+  padding: 3px 9px;
+  border-radius: 4px;
+  color: var(--gris);
+}
+.drive-frame.is-placeholder .drive-ph { display: flex; }
+.drive-frame.is-placeholder img,
+.drive-frame.is-placeholder iframe { visibility: hidden; }
+
+.drive-cap {
   font-family: 'JetBrains Mono', monospace;
   font-size: 10.5px;
   color: var(--gris-soft);
   margin: 7px 2px 0;
   display: flex; justify-content: space-between; gap: 10px;
 }
-.preview .cap b { color: var(--gris); font-weight: 600; }
+.drive-cap b { color: var(--gris); font-weight: 600; }
 
 /* ============================================================
    CALLOUT (nota del video / seguridad)
